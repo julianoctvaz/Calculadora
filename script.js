@@ -25,9 +25,7 @@ const check_operator = expr => {
 };
 
 const handle_expr = expr => {
-  const expr_len = expr.length;
-
-  if (expr_len > 2) {
+  if (isNaN(expr)) {
     const res = check_operator(expr);
     const subExpr_left = expr.substring(0, res.pos);
     const subExpr_right = expr.substring(res.pos + 1, res.len);
@@ -43,9 +41,9 @@ const handle_expr = expr => {
         return left_res + right_res;
       case "-":
         return left_res - right_res;
+      default:
+        return;
     }
-  } else if (expr_len === 2) {
-    return parseInt(expr);
   } else {
     return parseInt(expr);
   }
